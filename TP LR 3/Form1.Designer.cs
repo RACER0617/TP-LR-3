@@ -35,6 +35,9 @@ namespace TP_LR_3
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.btnLoadData = new System.Windows.Forms.Button();
             this.txtMaxGainCurrency1 = new System.Windows.Forms.TextBox();
             this.txtMaxGainCurrency2 = new System.Windows.Forms.TextBox();
@@ -46,9 +49,14 @@ namespace TP_LR_3
             this.Currency2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.chart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.forecastChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.chartFuture = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.btnForecast = new System.Windows.Forms.Button();
+            this.futureTextBox = new System.Windows.Forms.RichTextBox();
+            this.ntextbox = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.forecastChart)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chartFuture)).BeginInit();
             this.SuspendLayout();
             // 
             // btnLoadData
@@ -148,11 +156,56 @@ namespace TP_LR_3
             this.forecastChart.TabIndex = 8;
             this.forecastChart.Text = "chart1";
             // 
+            // chartFuture
+            // 
+            chartArea3.Name = "ChartArea1";
+            this.chartFuture.ChartAreas.Add(chartArea3);
+            legend3.Name = "Legend1";
+            this.chartFuture.Legends.Add(legend3);
+            this.chartFuture.Location = new System.Drawing.Point(801, 50);
+            this.chartFuture.Name = "chartFuture";
+            series3.ChartArea = "ChartArea1";
+            series3.Legend = "Legend1";
+            series3.Name = "Series1";
+            this.chartFuture.Series.Add(series3);
+            this.chartFuture.Size = new System.Drawing.Size(300, 246);
+            this.chartFuture.TabIndex = 9;
+            this.chartFuture.Text = "chartFuture";
+            // 
+            // btnForecast
+            // 
+            this.btnForecast.Location = new System.Drawing.Point(619, 298);
+            this.btnForecast.Name = "btnForecast";
+            this.btnForecast.Size = new System.Drawing.Size(75, 23);
+            this.btnForecast.TabIndex = 11;
+            this.btnForecast.Text = "рассчет";
+            this.btnForecast.UseVisualStyleBackColor = true;
+            this.btnForecast.Click += new System.EventHandler(this.btnForecast_Click);
+            // 
+            // futureTextBox
+            // 
+            this.futureTextBox.Location = new System.Drawing.Point(801, 338);
+            this.futureTextBox.Name = "futureTextBox";
+            this.futureTextBox.Size = new System.Drawing.Size(300, 149);
+            this.futureTextBox.TabIndex = 12;
+            this.futureTextBox.Text = "";
+            // 
+            // ntextbox
+            // 
+            this.ntextbox.Location = new System.Drawing.Point(801, 312);
+            this.ntextbox.Name = "ntextbox";
+            this.ntextbox.Size = new System.Drawing.Size(100, 20);
+            this.ntextbox.TabIndex = 13;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 596);
+            this.ClientSize = new System.Drawing.Size(1113, 596);
+            this.Controls.Add(this.ntextbox);
+            this.Controls.Add(this.futureTextBox);
+            this.Controls.Add(this.btnForecast);
+            this.Controls.Add(this.chartFuture);
             this.Controls.Add(this.forecastChart);
             this.Controls.Add(this.chart);
             this.Controls.Add(this.txtMaxLossCurrency2);
@@ -166,6 +219,7 @@ namespace TP_LR_3
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.forecastChart)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chartFuture)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -180,6 +234,10 @@ namespace TP_LR_3
         private System.Windows.Forms.DataGridViewTextBoxColumn Currency2;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart;
         private System.Windows.Forms.DataVisualization.Charting.Chart forecastChart;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chartFuture;
+        private System.Windows.Forms.Button btnForecast;
+        private System.Windows.Forms.RichTextBox futureTextBox;
+        private System.Windows.Forms.TextBox ntextbox;
     }
 }
 

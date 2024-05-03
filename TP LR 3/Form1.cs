@@ -117,18 +117,24 @@ namespace TP_LR_3
             {
                 // Обновление данных в таблице и графике
                 UpdateTableAndGraph(openFileDialog.FileName);
+
+                // Вычисление максимального прироста и убытка
+                CalculateMaxGainAndLoss();
             }
         }
 
         private void UpdateTableAndGraph(string filePath)
         {
+            // Инициализация объекта CurrencyMonthData
+            monthData = new CurrencyMonthData();
+
             // Чтение данных из CSV файла
             string[] lines = File.ReadAllLines(filePath);
 
             // Очистка таблицы перед вставкой новых данных
             dataGridView.Rows.Clear();
 
-            // Вставка данных из файла в таблицу
+            // Вставка данных из файла в таблицу и объект monthData
             foreach (string line in lines)
             {
                 string[] values = line.Split(';');
@@ -136,8 +142,25 @@ namespace TP_LR_3
                 // Проверка наличия всех требуемых значений в строке
                 if (values.Length >= 3)
                 {
-                    // Добавление значений в соответствующие столбцы таблицы
-                    dataGridView.Rows.Add(values[0], values[1], values[2]);
+                    // Пробуем преобразовать дату и значения в числа
+                    if (DateTime.TryParseExact(values[0], "dd.MM.yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime date) &&
+                        decimal.TryParse(values[1], NumberStyles.Number, CultureInfo.InvariantCulture, out decimal currency1) &&
+                        decimal.TryParse(values[2], NumberStyles.Number, CultureInfo.InvariantCulture, out decimal currency2))
+                    {
+                        // Добавление значений в соответствующие столбцы таблицы
+                        dataGridView.Rows.Add(values[0], values[1], values[2]);
+
+                        // Добавление данных в объект monthData
+                        CurrencyData data = new CurrencyData(date);
+                        data.AddExchangeRate("Currency1", currency1);
+                        data.AddExchangeRate("Currency2", currency2);
+                        monthData.AddDailyData(data);
+                    }
+                    else
+                    {
+                        // Выводим сообщение об ошибке, если формат неверный
+                        MessageBox.Show($"Неверный формат данных в строке: {line}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
                 else
                 {
@@ -148,13 +171,95 @@ namespace TP_LR_3
 
             // Построение графика с учетом новых данных
             PlotExchangeRateGraph();
+
+            // Вычисление максимального прироста и убытка после загрузки данных
+            CalculateMaxGainAndLoss();
         }
 
 
 
 
+        private void CalculateMaxGainAndLoss()
+        {
+            decimal maxGainCurrency1 = monthData.MaxGain("Currency1");
+            decimal maxLossCurrency1 = monthData.MaxLoss("Currency1");
+            decimal maxGainCurrency2 = monthData.MaxGain("Currency2");
+            decimal maxLossCurrency2 = monthData.MaxLoss("Currency2");
 
+            // Вывод результатов на текстовые поля
+            txtMaxGainCurrency1.Text = maxGainCurrency1.ToString();
+            txtMaxLossCurrency1.Text = maxLossCurrency1.ToString();
+            txtMaxGainCurrency2.Text = maxGainCurrency2.ToString();
+            txtMaxLossCurrency2.Text = maxLossCurrency2.ToString();
+        }
 
+        private void ForecastExchangeRate(int N)
+        {
+            // Проверяем, что monthData не равен null
+            if (monthData != null)
+            {
+                // Получаем скользящие средние для каждой валюты
+                decimal[] movingAverageCurrency1 = monthData.MovingAverage(N, "Currency1");
+                decimal[] movingAverageCurrency2 = monthData.MovingAverage(N, "Currency2");
+
+                // Создаем объекты Series для отображения прогнозов на графике
+                Series seriesForecastCurrency1 = new Series();
+                seriesForecastCurrency1.ChartType = SeriesChartType.Line;
+                Series seriesForecastCurrency2 = new Series();
+                seriesForecastCurrency2.ChartType = SeriesChartType.Line;
+
+                // Прогнозируем данные и добавляем их в объекты Series
+                for (int i = 0; i < movingAverageCurrency1.Length; i++)
+                {
+                    // Добавляем точки для текущего прогноза
+                    seriesForecastCurrency1.Points.AddXY(i + 1, movingAverageCurrency1[i]);
+                    seriesForecastCurrency2.Points.AddXY(i + 1, movingAverageCurrency2[i]);
+                }
+
+                // Прогнозируем данные на N дней вперед
+                decimal lastValueCurrency1 = movingAverageCurrency1.Last();
+                decimal lastValueCurrency2 = movingAverageCurrency2.Last();
+                for (int i = movingAverageCurrency1.Length; i < movingAverageCurrency1.Length + N; i++)
+                {
+                    // Прогнозируем на основе последнего известного значения
+                    lastValueCurrency1 *= (1 + (movingAverageCurrency1.Average() / 100));
+                    lastValueCurrency2 *= (1 + (movingAverageCurrency2.Average() / 100));
+
+                    // Добавляем точки для прогноза на N дней
+                    seriesForecastCurrency1.Points.AddXY(i + 1, lastValueCurrency1);
+                    seriesForecastCurrency2.Points.AddXY(i + 1, lastValueCurrency2);
+                }
+
+                // Добавляем серии на график
+                chartFuture.Series.Clear();
+                chartFuture.Series.Add(seriesForecastCurrency1);
+                chartFuture.Series.Add(seriesForecastCurrency2);
+
+                // Обновляем текстовое поле с информацией о прогнозе
+                futureTextBox.Text = $"Прогноз на {N} дней:\n\n" +
+                                     $"Валюта 1: {lastValueCurrency1}\n" +
+                                     $"Валюта 2: {lastValueCurrency2}";
+            }
+            else
+            {
+                MessageBox.Show("Ошибка: объект monthData не инициализирован.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnForecast_Click(object sender, EventArgs e)
+        {
+            // Считываем значение N из текстового поля
+            if (int.TryParse(ntextbox.Text, out int N))
+            {
+                // Прогнозирование и отображение на графике
+                ForecastExchangeRate(N);
+            }
+            else
+            {
+                // Если введено некорректное значение, выводим сообщение об ошибке
+                MessageBox.Show("Введите корректное значение N", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
 
     }
 }
