@@ -17,46 +17,97 @@ namespace TP_LR_3
     public partial class Form1 : Form
     {
         private CurrencyMonthData monthData;
-        private DataGridView dataGridView;
-        private Chart chart;
         private TextBox txtMaxGainCurrency1;
         private TextBox txtMaxGainCurrency2;
         private TextBox txtMaxLossCurrency1;
         private TextBox txtMaxLossCurrency2;
-        private Chart forecastChart;
 
         public Form1()
         {
             InitializeComponent();
-            {
-              
-            }
+            // Создание и отображение таблицы по умолчанию
+            CreateDefaultTable();
         }
 
-        
+        private void CreateDefaultTable()
+        {
+            // Создание таблицы с данными по умолчанию
+            string defaultData = @"Date Currency1 Currency2
+01.01.2024 73.50 88.20
+02.01.2024 73.60 88.10
+03.01.2024 75.70 88.15
+04.01.2024 75.80 89.00
+05.01.2024 75.90 88.65
+06.01.2024 76.00 90.00
+07.01.2024 76.10 89.11
+08.01.2024 76.20 89.05
+09.01.2024 76.30 89.34
+10.01.2024 76.40 89.71";
+
+            // Разделение строк на массив строк
+            string[] lines = defaultData.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
+
+            // Создание столбцов таблицы (если таблица не создана)
+            if (dataGridView == null)
+            {
+                dataGridView = new DataGridView();
+                dataGridView.Dock = DockStyle.Top;
+                Controls.Add(dataGridView);
+
+                // Создание столбцов таблицы
+                string[] headers = lines[0].Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+                for (int i = 0; i < headers.Length; i++)
+                {
+                    dataGridView.Columns.Add(headers[i], headers[i]);
+                }
+            }
+
+            // Заполнение таблицы данными
+            for (int i = 1; i < lines.Length; i++)
+            {
+                string[] row = lines[i].Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+                dataGridView.Rows.Add(row);
+            }
+
+            // Построение графика зависимости от дня
+            PlotExchangeRateGraph();
+        }
+
+        private void PlotExchangeRateGraph()
+        {
+            // Создание объекта Chart для отображения графиков
+            chart = new Chart();
+            chart.Dock = DockStyle.Fill;
+            Controls.Add(chart);
+
+            // Создание объекта Series для отображения данных
+            Series series = new Series();
+            series.ChartType = SeriesChartType.Line;
+
+            // Заполнение данными из таблицы
+            foreach (DataGridViewRow row in dataGridView.Rows)
+            {
+                if (!row.IsNewRow)
+                {
+                    series.Points.AddXY(row.Cells[0].Value, row.Cells[1].Value);
+                }
+            }
+
+            // Добавление серии на график
+            chart.Series.Add(series);
+        }
+
         private void btnLoadData_Click(object sender, EventArgs e)
         {
             // Диалоговое окно для выбора файла с данными
             OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "CSV files (*.csv)|*.csv";
+            openFileDialog.Filter = "TXT files (*.txt)|*.txt";
             openFileDialog.Title = "Выберите файл с данными о курсе валют";
 
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 // Загрузка данных из файла
                 monthData = LoadDataFromFile(openFileDialog.FileName);
-
-                // Вывод данных на экран в табличном формате
-                DisplayDataInTable();
-
-                // Построение графиков зависимости от дня
-                PlotExchangeRateGraph();
-
-                // Вычисление максимального прироста и потерь рубля относительно каждой валюты
-                CalculateMaxGainAndLoss();
-
-                // Статистическое прогнозирование методом экстраполяции по скользящей средней
-                PlotMovingAverageForecast();
             }
         }
 
@@ -89,50 +140,6 @@ namespace TP_LR_3
             }
 
             return data;
-        }
-
-
-
-
-
-
-        private void DisplayDataInTable()
-        {
-            // Здесь добавьте код для вывода данных в табличном формате на форму
-            dataGridView = new DataGridView();
-            dataGridView.DataSource = monthData.DailyData;
-            dataGridView.Dock = DockStyle.Top;
-            Controls.Add(dataGridView);
-        }
-
-        private void PlotExchangeRateGraph()
-        {
-            // Здесь добавьте код для построения графиков зависимости от дня на форме
-            chart = new Chart();
-            chart.Dock = DockStyle.Fill;
-            // Добавьте код для настройки графика
-            Controls.Add(chart);
-        }
-
-        private void CalculateMaxGainAndLoss()
-        {
-            // Здесь добавьте код для вычисления максимального прироста и потерь рубля относительно каждой валюты
-            // и вывод результатов на форму
-            txtMaxGainCurrency1 = new TextBox();
-            txtMaxGainCurrency2 = new TextBox();
-            txtMaxLossCurrency1 = new TextBox();
-            txtMaxLossCurrency2 = new TextBox();
-            // Добавьте код для размещения текстовых полей на форме
-        }
-
-        private void PlotMovingAverageForecast()
-        {
-            // Здесь добавьте код для статистического прогнозирования методом экстраполяции по скользящей средней
-            // и построение графика прогноза на форме
-            forecastChart = new Chart();
-            forecastChart.Dock = DockStyle.Bottom;
-            // Добавьте код для настройки графика прогноза
-            Controls.Add(forecastChart);
         }
 
 
