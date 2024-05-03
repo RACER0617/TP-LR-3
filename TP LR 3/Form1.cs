@@ -110,50 +110,48 @@ namespace TP_LR_3
         {
             // Диалоговое окно для выбора файла с данными
             OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "TXT files (*.txt)|*.txt";
+            openFileDialog.Filter = "CSV files (*.csv)|*.csv";
             openFileDialog.Title = "Выберите файл с данными о курсе валют";
 
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                // Загрузка данных из файла
-                monthData = LoadDataFromFile(openFileDialog.FileName);
+                // Обновление данных в таблице и графике
+                UpdateTableAndGraph(openFileDialog.FileName);
             }
         }
 
-        private CurrencyMonthData LoadDataFromFile(string filePath)
+        private void UpdateTableAndGraph(string filePath)
         {
-            CurrencyMonthData data = new CurrencyMonthData();
+            // Чтение данных из CSV файла
+            string[] lines = File.ReadAllLines(filePath);
 
-            try
+            // Очистка таблицы перед вставкой новых данных
+            dataGridView.Rows.Clear();
+
+            // Вставка данных из файла в таблицу
+            foreach (string line in lines)
             {
-                string[] lines = File.ReadAllLines(filePath);
-                foreach (string line in lines)
+                string[] values = line.Split(';');
+
+                // Проверка наличия всех требуемых значений в строке
+                if (values.Length >= 3)
                 {
-                    string[] parts = line.Split('\t'); // разбиваем строку по табуляции
-                    DateTime date = DateTime.ParseExact(parts[0], "dd.MM.yyyy", CultureInfo.InvariantCulture);
-                    CurrencyData currencyData = new CurrencyData(date);
-
-                    // Курсы валют могут содержать запятые, их нужно убрать
-                    decimal currency1Rate = decimal.Parse(parts[1].Replace(".", CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator));
-                    decimal currency2Rate = decimal.Parse(parts[2].Replace(".", CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator));
-
-                    currencyData.AddExchangeRate("Currency1", currency1Rate);
-                    currencyData.AddExchangeRate("Currency2", currency2Rate);
-
-                    data.AddDailyData(currencyData);
+                    // Добавление значений в соответствующие столбцы таблицы
+                    dataGridView.Rows.Add(values[0], values[1], values[2]);
                 }
-
-                // Построение графиков зависимости от дня
-                PlotExchangeRateGraph(); // Перемещаем вызов сюда
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Ошибка при чтении файла: " + ex.Message);
+                else
+                {
+                    // Обработка неполных строк, если такие есть
+                    MessageBox.Show($"Неполные данные в строке: {line}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
 
-            return data;
+            // Построение графика с учетом новых данных
+            PlotExchangeRateGraph();
         }
+
+
+
 
 
 
