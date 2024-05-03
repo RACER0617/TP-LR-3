@@ -27,6 +27,7 @@ namespace TP_LR_3
             InitializeComponent();
             // Создание и отображение таблицы по умолчанию
             CreateDefaultTable();
+
         }
 
         private void CreateDefaultTable()
@@ -75,27 +76,35 @@ namespace TP_LR_3
 
         private void PlotExchangeRateGraph()
         {
-            // Создание объекта Chart для отображения графиков
-            chart = new Chart();
-            chart.Dock = DockStyle.Fill;
-            Controls.Add(chart);
+            // Создание объекта Series для отображения данных в элементе chart
+            Series seriesChart = new Series();
+            seriesChart.ChartType = SeriesChartType.Line;
 
-            // Создание объекта Series для отображения данных
-            Series series = new Series();
-            series.ChartType = SeriesChartType.Line;
+            // Создание объекта Series для отображения данных в элементе forecastChart
+            Series seriesForecastChart = new Series();
+            seriesForecastChart.ChartType = SeriesChartType.Line;
 
-            // Заполнение данными из таблицы
+            // Заполнение данными из таблицы defaultData
             foreach (DataGridViewRow row in dataGridView.Rows)
             {
                 if (!row.IsNewRow)
                 {
-                    series.Points.AddXY(row.Cells[0].Value, row.Cells[1].Value);
+                    // Добавление точек на график chart
+                    seriesChart.Points.AddXY(row.Cells[0].Value, row.Cells[1].Value);
+
+                    // Добавление точек на график forecastChart
+                    seriesForecastChart.Points.AddXY(row.Cells[0].Value, row.Cells[2].Value);
                 }
             }
 
-            // Добавление серии на график
-            chart.Series.Add(series);
+            // Добавление серии на графики
+            chart.Series.Clear();
+            chart.Series.Add(seriesChart);
+
+            forecastChart.Series.Clear();
+            forecastChart.Series.Add(seriesForecastChart);
         }
+
 
         private void btnLoadData_Click(object sender, EventArgs e)
         {
@@ -120,7 +129,7 @@ namespace TP_LR_3
                 string[] lines = File.ReadAllLines(filePath);
                 foreach (string line in lines)
                 {
-                    string[] parts = line.Split(' '); // разбиваем строку по пробелу
+                    string[] parts = line.Split('\t'); // разбиваем строку по табуляции
                     DateTime date = DateTime.ParseExact(parts[0], "dd.MM.yyyy", CultureInfo.InvariantCulture);
                     CurrencyData currencyData = new CurrencyData(date);
 
@@ -133,6 +142,10 @@ namespace TP_LR_3
 
                     data.AddDailyData(currencyData);
                 }
+
+                // Построение графиков зависимости от дня
+                PlotExchangeRateGraph(); // Перемещаем вызов сюда
+
             }
             catch (Exception ex)
             {
@@ -141,6 +154,7 @@ namespace TP_LR_3
 
             return data;
         }
+
 
 
 
