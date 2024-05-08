@@ -53,6 +53,10 @@ namespace TP_LR_3
             this.btnForecast = new System.Windows.Forms.Button();
             this.futureTextBox = new System.Windows.Forms.RichTextBox();
             this.ntextbox = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.forecastChart)).BeginInit();
@@ -130,13 +134,13 @@ namespace TP_LR_3
             this.chart.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
             this.chart.Legends.Add(legend1);
-            this.chart.Location = new System.Drawing.Point(12, 338);
+            this.chart.Location = new System.Drawing.Point(12, 358);
             this.chart.Name = "chart";
             series1.ChartArea = "ChartArea1";
             series1.Legend = "Legend1";
             series1.Name = "Series1";
             this.chart.Series.Add(series1);
-            this.chart.Size = new System.Drawing.Size(300, 246);
+            this.chart.Size = new System.Drawing.Size(300, 226);
             this.chart.TabIndex = 7;
             this.chart.Text = "chart";
             // 
@@ -146,13 +150,13 @@ namespace TP_LR_3
             this.forecastChart.ChartAreas.Add(chartArea2);
             legend2.Name = "Legend1";
             this.forecastChart.Legends.Add(legend2);
-            this.forecastChart.Location = new System.Drawing.Point(488, 338);
+            this.forecastChart.Location = new System.Drawing.Point(488, 358);
             this.forecastChart.Name = "forecastChart";
             series2.ChartArea = "ChartArea1";
             series2.Legend = "Legend1";
             series2.Name = "Series1";
             this.forecastChart.Series.Add(series2);
-            this.forecastChart.Size = new System.Drawing.Size(300, 246);
+            this.forecastChart.Size = new System.Drawing.Size(300, 226);
             this.forecastChart.TabIndex = 8;
             this.forecastChart.Text = "chart1";
             // 
@@ -197,11 +201,51 @@ namespace TP_LR_3
             this.ntextbox.Size = new System.Drawing.Size(100, 20);
             this.ntextbox.TabIndex = 13;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(315, 20);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(100, 13);
+            this.label1.TabIndex = 14;
+            this.label1.Text = "ТАБЛИЦА ВАЛЮТ";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(870, 20);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(59, 13);
+            this.label2.TabIndex = 15;
+            this.label2.Text = "ПРОГНОЗ";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(126, 338);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(54, 13);
+            this.label3.TabIndex = 16;
+            this.label3.Text = "ДОЛЛАР";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(605, 338);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(36, 13);
+            this.label4.TabIndex = 17;
+            this.label4.Text = "ЕВРО";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1113, 596);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.ntextbox);
             this.Controls.Add(this.futureTextBox);
             this.Controls.Add(this.btnForecast);
@@ -238,6 +282,10 @@ namespace TP_LR_3
         private System.Windows.Forms.Button btnForecast;
         private System.Windows.Forms.RichTextBox futureTextBox;
         private System.Windows.Forms.TextBox ntextbox;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
     }
 }
 
