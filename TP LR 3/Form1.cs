@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using LiveCharts;
+using LiveCharts.Wpf;
 
 namespace TP_LR_3
 {
