@@ -57,6 +57,7 @@ namespace TP_LR_3
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.forecastChart)).BeginInit();
@@ -188,7 +189,7 @@ namespace TP_LR_3
             // 
             // futureTextBox
             // 
-            this.futureTextBox.Location = new System.Drawing.Point(801, 338);
+            this.futureTextBox.Location = new System.Drawing.Point(801, 381);
             this.futureTextBox.Name = "futureTextBox";
             this.futureTextBox.Size = new System.Drawing.Size(300, 149);
             this.futureTextBox.TabIndex = 12;
@@ -237,11 +238,21 @@ namespace TP_LR_3
             this.label4.TabIndex = 17;
             this.label4.Text = "ЕВРО";
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(870, 358);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(162, 13);
+            this.label5.TabIndex = 18;
+            this.label5.Text = "ИНФОРМАЦИЯ О ПРОГНОЗЕ";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1113, 596);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -286,6 +297,7 @@ namespace TP_LR_3
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
     }
 }
 
