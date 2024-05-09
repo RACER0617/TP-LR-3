@@ -31,6 +31,7 @@ namespace TP_LR_3
 
             // Добавляем ось Y с заголовком "Численность населения"
             ChartPopulation.ChartAreas[0].AxisY.Title = "Численность населения";
+
         }
 
 
@@ -72,6 +73,9 @@ namespace TP_LR_3
             {
                 series.Points.AddXY(data.Year, data.Population);
             }
+            ChartPopulation.ChartAreas[0].AxisY.Minimum = 13500000;
+            // Устанавливаем интервал на оси Y
+            ChartPopulation.ChartAreas[0].AxisY.Interval = 250000;
         }
 
 
@@ -97,6 +101,11 @@ namespace TP_LR_3
         }
         private void ExtrapolateAndDrawChart(int yearsToExtrapolate)
         {
+            // Создаем новую серию для прогноза
+            var extrapolatedSeries = new System.Windows.Forms.DataVisualization.Charting.Series("Прогноз на " + yearsToExtrapolate + " лет");
+            extrapolatedSeries.ChartType = SeriesChartType.Line;
+            extrapolatedSeries.Color = System.Drawing.Color.Red; // Устанавливаем цвет для линии прогнозирования
+
             // Копируем существующие данные
             var extrapolatedData = new List<PopulationData>(populationDataList);
 
@@ -112,29 +121,27 @@ namespace TP_LR_3
                 });
             }
 
-            // Очищаем существующий график
-            ChartPopulation.Series.Clear();
-
-            // Добавляем серию для исходных данных
-            var originalSeries = ChartPopulation.Series.Add("Исходные данные");
-            originalSeries.ChartType = SeriesChartType.Line;
-            foreach (var data in populationDataList)
-            {
-                originalSeries.Points.AddXY(data.Year, data.Population);
-            }
-
-            // Добавляем серию для экстраполированных данных
-            var extrapolatedSeries = ChartPopulation.Series.Add("Экстраполированные данные");
-            extrapolatedSeries.ChartType = SeriesChartType.Line;
-            extrapolatedSeries.Color = System.Drawing.Color.Red; // Устанавливаем другой цвет для экстраполированных данных
+            // Добавляем данные в серию для прогноза
             foreach (var data in extrapolatedData)
             {
                 extrapolatedSeries.Points.AddXY(data.Year, data.Population);
             }
 
-            // Перерисовываем график
-            ChartPopulation.Invalidate();
+            // Добавляем серию на график прогноза
+            PrognozChart.Series.Clear(); // Очищаем серии на графике прогноза, если они есть
+            PrognozChart.Series.Add(extrapolatedSeries);
+
+            // Устанавливаем оси и подписи для графика прогноза
+            PrognozChart.ChartAreas[0].AxisX.Title = "Год";
+            PrognozChart.ChartAreas[0].AxisY.Title = "Прогноз населения";
+            PrognozChart.ChartAreas[0].AxisY.Minimum = 13500000;
+            // Устанавливаем интервал на оси Y
+            PrognozChart.ChartAreas[0].AxisY.Interval = 250000;
+
+            // Перерисовываем график прогноза
+            PrognozChart.Invalidate();
         }
+
         private void ButtonForecast_Click(object sender, EventArgs e)
         {
             // Запустить прогноз на N лет, например, на 5 лет

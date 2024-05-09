@@ -29,6 +29,9 @@ namespace TP_LR_3
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
@@ -42,24 +45,26 @@ namespace TP_LR_3
             this.label2 = new System.Windows.Forms.Label();
             this.ButtonForecast = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.PrognozChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             ((System.ComponentModel.ISupportInitialize)(this.ChartPopulation)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridView)).BeginInit();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PrognozChart)).BeginInit();
             this.SuspendLayout();
             // 
             // ChartPopulation
             // 
-            chartArea2.Name = "ChartArea1";
-            this.ChartPopulation.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this.ChartPopulation.Legends.Add(legend2);
+            chartArea1.Name = "ChartArea1";
+            this.ChartPopulation.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.ChartPopulation.Legends.Add(legend1);
             this.ChartPopulation.Location = new System.Drawing.Point(449, 12);
             this.ChartPopulation.Name = "ChartPopulation";
-            series2.ChartArea = "ChartArea1";
-            series2.Legend = "Legend1";
-            series2.Name = "Series1";
-            this.ChartPopulation.Series.Add(series2);
-            this.ChartPopulation.Size = new System.Drawing.Size(788, 359);
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.ChartPopulation.Series.Add(series1);
+            this.ChartPopulation.Size = new System.Drawing.Size(828, 392);
             this.ChartPopulation.TabIndex = 0;
             this.ChartPopulation.Text = "chart1";
             // 
@@ -90,16 +95,16 @@ namespace TP_LR_3
             // DataGridView
             // 
             this.DataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DataGridView.Location = new System.Drawing.Point(24, 261);
+            this.DataGridView.Location = new System.Drawing.Point(113, 331);
             this.DataGridView.Name = "DataGridView";
-            this.DataGridView.Size = new System.Drawing.Size(262, 332);
+            this.DataGridView.Size = new System.Drawing.Size(245, 358);
             this.DataGridView.TabIndex = 3;
             // 
             // ButtonOpenFile
             // 
-            this.ButtonOpenFile.Location = new System.Drawing.Point(24, 201);
+            this.ButtonOpenFile.Location = new System.Drawing.Point(39, 219);
             this.ButtonOpenFile.Name = "ButtonOpenFile";
-            this.ButtonOpenFile.Size = new System.Drawing.Size(129, 42);
+            this.ButtonOpenFile.Size = new System.Drawing.Size(173, 67);
             this.ButtonOpenFile.TabIndex = 4;
             this.ButtonOpenFile.Text = "Загрузить файл";
             this.ButtonOpenFile.UseVisualStyleBackColor = true;
@@ -127,9 +132,9 @@ namespace TP_LR_3
             // 
             // ButtonForecast
             // 
-            this.ButtonForecast.Location = new System.Drawing.Point(159, 201);
+            this.ButtonForecast.Location = new System.Drawing.Point(235, 219);
             this.ButtonForecast.Name = "ButtonForecast";
-            this.ButtonForecast.Size = new System.Drawing.Size(129, 42);
+            this.ButtonForecast.Size = new System.Drawing.Size(173, 67);
             this.ButtonForecast.TabIndex = 7;
             this.ButtonForecast.Text = "Прогноз на N лет по скользящей средней";
             this.ButtonForecast.UseVisualStyleBackColor = true;
@@ -147,11 +152,28 @@ namespace TP_LR_3
             this.panel1.Size = new System.Drawing.Size(419, 166);
             this.panel1.TabIndex = 8;
             // 
+            // PrognozChart
+            // 
+            chartArea2.Name = "ChartArea1";
+            this.PrognozChart.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.PrognozChart.Legends.Add(legend2);
+            this.PrognozChart.Location = new System.Drawing.Point(449, 410);
+            this.PrognozChart.Name = "PrognozChart";
+            series2.ChartArea = "ChartArea1";
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            this.PrognozChart.Series.Add(series2);
+            this.PrognozChart.Size = new System.Drawing.Size(828, 357);
+            this.PrognozChart.TabIndex = 9;
+            this.PrognozChart.Text = "chart1";
+            // 
             // LarasForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1392, 645);
+            this.ClientSize = new System.Drawing.Size(1322, 805);
+            this.Controls.Add(this.PrognozChart);
             this.Controls.Add(this.ButtonForecast);
             this.Controls.Add(this.ButtonOpenFile);
             this.Controls.Add(this.DataGridView);
@@ -163,6 +185,7 @@ namespace TP_LR_3
             ((System.ComponentModel.ISupportInitialize)(this.DataGridView)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PrognozChart)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -179,6 +202,7 @@ namespace TP_LR_3
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button ButtonForecast;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.DataVisualization.Charting.Chart PrognozChart;
     }
 }
 
