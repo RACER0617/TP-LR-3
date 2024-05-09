@@ -144,11 +144,10 @@ namespace TP_LR_3
 
         private void ButtonForecast_Click(object sender, EventArgs e)
         {
-            // Запустить прогноз на N лет, например, на 5 лет
+
             ExtrapolateAndDrawChart(5); // Экстраполируем данные на 5 лет и отображаем на графике
         }
     }
-
     public class PopulationData
     {
         public int Year { get; set; }

@@ -29,12 +29,12 @@ namespace TP_LR_3
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.ChartPopulation = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.IblMaxGrowth = new System.Windows.Forms.Label();
@@ -54,16 +54,16 @@ namespace TP_LR_3
             // 
             // ChartPopulation
             // 
-            chartArea1.Name = "ChartArea1";
-            this.ChartPopulation.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.ChartPopulation.Legends.Add(legend1);
+            chartArea3.Name = "ChartArea1";
+            this.ChartPopulation.ChartAreas.Add(chartArea3);
+            legend3.Name = "Legend1";
+            this.ChartPopulation.Legends.Add(legend3);
             this.ChartPopulation.Location = new System.Drawing.Point(449, 12);
             this.ChartPopulation.Name = "ChartPopulation";
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.ChartPopulation.Series.Add(series1);
+            series3.ChartArea = "ChartArea1";
+            series3.Legend = "Legend1";
+            series3.Name = "Series1";
+            this.ChartPopulation.Series.Add(series3);
             this.ChartPopulation.Size = new System.Drawing.Size(828, 392);
             this.ChartPopulation.TabIndex = 0;
             this.ChartPopulation.Text = "chart1";
@@ -78,9 +78,8 @@ namespace TP_LR_3
             this.IblMaxGrowth.Font = new System.Drawing.Font("Modern No. 20", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.IblMaxGrowth.Location = new System.Drawing.Point(14, 53);
             this.IblMaxGrowth.Name = "IblMaxGrowth";
-            this.IblMaxGrowth.Size = new System.Drawing.Size(68, 25);
+            this.IblMaxGrowth.Size = new System.Drawing.Size(0, 25);
             this.IblMaxGrowth.TabIndex = 1;
-            this.IblMaxGrowth.Text = "fgdhh";
             // 
             // IblMaxDecline
             // 
@@ -88,9 +87,8 @@ namespace TP_LR_3
             this.IblMaxDecline.Font = new System.Drawing.Font("Modern No. 20", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.IblMaxDecline.Location = new System.Drawing.Point(14, 124);
             this.IblMaxDecline.Name = "IblMaxDecline";
-            this.IblMaxDecline.Size = new System.Drawing.Size(74, 25);
+            this.IblMaxDecline.Size = new System.Drawing.Size(0, 25);
             this.IblMaxDecline.TabIndex = 2;
-            this.IblMaxDecline.Text = "fghgfh";
             // 
             // DataGridView
             // 
@@ -154,16 +152,16 @@ namespace TP_LR_3
             // 
             // PrognozChart
             // 
-            chartArea2.Name = "ChartArea1";
-            this.PrognozChart.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this.PrognozChart.Legends.Add(legend2);
+            chartArea4.Name = "ChartArea1";
+            this.PrognozChart.ChartAreas.Add(chartArea4);
+            legend4.Name = "Legend1";
+            this.PrognozChart.Legends.Add(legend4);
             this.PrognozChart.Location = new System.Drawing.Point(449, 410);
             this.PrognozChart.Name = "PrognozChart";
-            series2.ChartArea = "ChartArea1";
-            series2.Legend = "Legend1";
-            series2.Name = "Series1";
-            this.PrognozChart.Series.Add(series2);
+            series4.ChartArea = "ChartArea1";
+            series4.Legend = "Legend1";
+            series4.Name = "Series1";
+            this.PrognozChart.Series.Add(series4);
             this.PrognozChart.Size = new System.Drawing.Size(828, 357);
             this.PrognozChart.TabIndex = 9;
             this.PrognozChart.Text = "chart1";
