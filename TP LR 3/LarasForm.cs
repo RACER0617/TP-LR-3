@@ -90,11 +90,11 @@ namespace TP_LR_3
                 }
             }
 
-            IblMaxGrowth.Text = $"Максимальный прирост населения: {maxGrowth}%";
-            IblMaxDecline.Text = $"Максимальная убыль населения: {maxDecline}%";
+            IblMaxGrowth.Text = $"{maxGrowth}%";
+            IblMaxDecline.Text = $"{maxDecline}%";
         }
     }
-    //Напишу коммент 
+
     public class PopulationData
     {
         public int Year { get; set; }
