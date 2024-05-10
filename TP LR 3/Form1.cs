@@ -198,9 +198,13 @@ namespace TP_LR_3
             // Проверяем, что monthData не равен null
             if (monthData != null)
             {
-                // Получаем скользящие средние для каждой валюты
-                decimal[] movingAverageCurrency1 = monthData.MovingAverage(N, "Currency1");
-                decimal[] movingAverageCurrency2 = monthData.MovingAverage(N, "Currency2");
+                // Получаем среднегодовой темп прироста и убытка для каждой валюты
+                decimal averageGrowthRateCurrency1 = CalculateAverageGrowthRate("Currency1");
+                decimal averageGrowthRateCurrency2 = CalculateAverageGrowthRate("Currency2");
+
+                // Получаем последние известные значения курса валют
+                decimal lastValueCurrency1 = monthData.LastExchangeRate("Currency1");
+                decimal lastValueCurrency2 = monthData.LastExchangeRate("Currency2");
 
                 // Создаем объекты Series для отображения прогнозов на графике
                 Series seriesForecastCurrency1 = new Series();
@@ -208,22 +212,12 @@ namespace TP_LR_3
                 Series seriesForecastCurrency2 = new Series();
                 seriesForecastCurrency2.ChartType = SeriesChartType.Line;
 
-                // Прогнозируем данные и добавляем их в объекты Series
-                for (int i = 0; i < movingAverageCurrency1.Length; i++)
-                {
-                    // Добавляем точки для текущего прогноза
-                    seriesForecastCurrency1.Points.AddXY(i + 1, movingAverageCurrency1[i]);
-                    seriesForecastCurrency2.Points.AddXY(i + 1, movingAverageCurrency2[i]);
-                }
-
                 // Прогнозируем данные на N дней вперед
-                decimal lastValueCurrency1 = movingAverageCurrency1.Last();
-                decimal lastValueCurrency2 = movingAverageCurrency2.Last();
-                for (int i = movingAverageCurrency1.Length; i < movingAverageCurrency1.Length + N; i++)
+                for (int i = 0; i < N; i++)
                 {
-                    // Прогнозируем на основе последнего известного значения
-                    lastValueCurrency1 *= (1 + (movingAverageCurrency1.Average() / 100));
-                    lastValueCurrency2 *= (1 + (movingAverageCurrency2.Average() / 100));
+                    // Прогнозируем на основе последнего известного значения и среднегодового темпа прироста/убытка
+                    lastValueCurrency1 *= (1 + (averageGrowthRateCurrency1 / 100));
+                    lastValueCurrency2 *= (1 + (averageGrowthRateCurrency2 / 100));
 
                     // Добавляем точки для прогноза на N дней
                     seriesForecastCurrency1.Points.AddXY(i + 1, lastValueCurrency1);
@@ -245,6 +239,21 @@ namespace TP_LR_3
                 MessageBox.Show("Ошибка: объект monthData не инициализирован.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private decimal CalculateAverageGrowthRate(string currency)
+        {
+            // Получаем данные по указанной валюте
+            List<decimal> exchangeRates = monthData.GetExchangeRates(currency);
+
+            // Вычисляем годовой темп прироста/убытка
+            decimal firstValue = exchangeRates.First();
+            decimal lastValue = exchangeRates.Last();
+            decimal growthRate = ((lastValue - firstValue) / firstValue) * 100;
+
+            // Возвращаем среднегодовой темп прироста/убытка
+            return growthRate / exchangeRates.Count;
+        }
+
 
         private void btnForecast_Click(object sender, EventArgs e)
         {

@@ -62,5 +62,30 @@ namespace TP_LR_3.MODEL
             }
             return movingAverages;
         }
+
+        // Метод для получения списка курсов валют по заданной валюте
+        public List<decimal> GetExchangeRates(string currency)
+        {
+            List<decimal> exchangeRates = new List<decimal>();
+            foreach (var data in DailyData)
+            {
+                exchangeRates.Add(data.GetExchangeRate(currency));
+            }
+            return exchangeRates;
+        }
+
+        // Метод для получения последнего известного курса валюты
+        public decimal LastExchangeRate(string currency)
+        {
+            if (DailyData.Count > 0)
+            {
+                return DailyData.Last().GetExchangeRate(currency);
+            }
+            else
+            {
+                // Если данных нет, возвращаем 0
+                return 0;
+            }
+        }
     }
 }
