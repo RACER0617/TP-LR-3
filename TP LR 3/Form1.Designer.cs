@@ -1,4 +1,4 @@
-﻿
+
 namespace TP_LR_3
 {
     partial class Form1
@@ -29,6 +29,7 @@ namespace TP_LR_3
         /// </summary>
         private void InitializeComponent()
         {
+
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
@@ -201,19 +202,12 @@ namespace TP_LR_3
             this.ntextbox.Name = "ntextbox";
             this.ntextbox.Size = new System.Drawing.Size(100, 20);
             this.ntextbox.TabIndex = 13;
+
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(315, 20);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(100, 13);
-            this.label1.TabIndex = 14;
-            this.label1.Text = "ТАБЛИЦА ВАЛЮТ";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
+
             this.label2.Location = new System.Drawing.Point(870, 20);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(59, 13);
@@ -278,26 +272,23 @@ namespace TP_LR_3
             this.ResumeLayout(false);
             this.PerformLayout();
 
+
         }
 
         #endregion
 
-        private System.Windows.Forms.Button btnLoadData;
-        private System.Windows.Forms.DataGridView dataGridView;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Data;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Currency1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Currency2;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chart;
-        private System.Windows.Forms.DataVisualization.Charting.Chart forecastChart;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chartFuture;
-        private System.Windows.Forms.Button btnForecast;
-        private System.Windows.Forms.RichTextBox futureTextBox;
-        private System.Windows.Forms.TextBox ntextbox;
+        private System.Windows.Forms.DataVisualization.Charting.Chart ChartPopulation;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.Label IblMaxGrowth;
+        private System.Windows.Forms.Label IblMaxDecline;
+        private System.Windows.Forms.DataGridView DataGridView;
+        private System.Windows.Forms.Button ButtonOpenFile;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button ButtonForecast;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.DataVisualization.Charting.Chart PrognozChart;
+
     }
 }
 
