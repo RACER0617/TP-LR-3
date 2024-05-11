@@ -1,4 +1,4 @@
-﻿
+
 namespace TP_LR_3
 {
     partial class Form1
@@ -29,163 +29,249 @@ namespace TP_LR_3
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            this.ChartPopulation = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.IblMaxGrowth = new System.Windows.Forms.Label();
-            this.IblMaxDecline = new System.Windows.Forms.Label();
-            this.DataGridView = new System.Windows.Forms.DataGridView();
-            this.ButtonOpenFile = new System.Windows.Forms.Button();
+            this.btnLoadData = new System.Windows.Forms.Button();
+            this.txtMaxGainCurrency1 = new System.Windows.Forms.TextBox();
+            this.txtMaxGainCurrency2 = new System.Windows.Forms.TextBox();
+            this.txtMaxLossCurrency1 = new System.Windows.Forms.TextBox();
+            this.txtMaxLossCurrency2 = new System.Windows.Forms.TextBox();
+            this.dataGridView = new System.Windows.Forms.DataGridView();
+            this.Data = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Currency1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Currency2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.chart = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.forecastChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.chartFuture = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.btnForecast = new System.Windows.Forms.Button();
+            this.futureTextBox = new System.Windows.Forms.RichTextBox();
+            this.ntextbox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.ButtonForecast = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.PrognozChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            ((System.ComponentModel.ISupportInitialize)(this.ChartPopulation)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DataGridView)).BeginInit();
-            this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.PrognozChart)).BeginInit();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chart)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.forecastChart)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chartFuture)).BeginInit();
             this.SuspendLayout();
             // 
-            // ChartPopulation
+            // btnLoadData
+            // 
+            this.btnLoadData.Location = new System.Drawing.Point(503, 298);
+            this.btnLoadData.Name = "btnLoadData";
+            this.btnLoadData.Size = new System.Drawing.Size(75, 23);
+            this.btnLoadData.TabIndex = 0;
+            this.btnLoadData.Text = "Загрузить данные";
+            this.btnLoadData.UseVisualStyleBackColor = true;
+            this.btnLoadData.Click += new System.EventHandler(this.btnLoadData_Click);
+            // 
+            // txtMaxGainCurrency1
+            // 
+            this.txtMaxGainCurrency1.Location = new System.Drawing.Point(12, 298);
+            this.txtMaxGainCurrency1.Name = "txtMaxGainCurrency1";
+            this.txtMaxGainCurrency1.Size = new System.Drawing.Size(100, 20);
+            this.txtMaxGainCurrency1.TabIndex = 3;
+            // 
+            // txtMaxGainCurrency2
+            // 
+            this.txtMaxGainCurrency2.Location = new System.Drawing.Point(129, 298);
+            this.txtMaxGainCurrency2.Name = "txtMaxGainCurrency2";
+            this.txtMaxGainCurrency2.Size = new System.Drawing.Size(100, 20);
+            this.txtMaxGainCurrency2.TabIndex = 4;
+            // 
+            // txtMaxLossCurrency1
+            // 
+            this.txtMaxLossCurrency1.Location = new System.Drawing.Point(248, 298);
+            this.txtMaxLossCurrency1.Name = "txtMaxLossCurrency1";
+            this.txtMaxLossCurrency1.Size = new System.Drawing.Size(100, 20);
+            this.txtMaxLossCurrency1.TabIndex = 5;
+            // 
+            // txtMaxLossCurrency2
+            // 
+            this.txtMaxLossCurrency2.Location = new System.Drawing.Point(370, 298);
+            this.txtMaxLossCurrency2.Name = "txtMaxLossCurrency2";
+            this.txtMaxLossCurrency2.Size = new System.Drawing.Size(100, 20);
+            this.txtMaxLossCurrency2.TabIndex = 6;
+            // 
+            // dataGridView
+            // 
+            this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Data,
+            this.Currency1,
+            this.Currency2});
+            this.dataGridView.Location = new System.Drawing.Point(12, 50);
+            this.dataGridView.Name = "dataGridView";
+            this.dataGridView.Size = new System.Drawing.Size(776, 232);
+            this.dataGridView.TabIndex = 1;
+            // 
+            // Data
+            // 
+            this.Data.HeaderText = "Data";
+            this.Data.Name = "Data";
+            // 
+            // Currency1
+            // 
+            this.Currency1.HeaderText = "Currency1";
+            this.Currency1.Name = "Currency1";
+            // 
+            // Currency2
+            // 
+            this.Currency2.HeaderText = "Currency2";
+            this.Currency2.Name = "Currency2";
+            // 
+            // chart
+            // 
+            chartArea1.Name = "ChartArea1";
+            this.chart.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chart.Legends.Add(legend1);
+            this.chart.Location = new System.Drawing.Point(12, 358);
+            this.chart.Name = "chart";
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.chart.Series.Add(series1);
+            this.chart.Size = new System.Drawing.Size(300, 226);
+            this.chart.TabIndex = 7;
+            this.chart.Text = "chart";
+            // 
+            // forecastChart
+            // 
+            chartArea2.Name = "ChartArea1";
+            this.forecastChart.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.forecastChart.Legends.Add(legend2);
+            this.forecastChart.Location = new System.Drawing.Point(488, 358);
+            this.forecastChart.Name = "forecastChart";
+            series2.ChartArea = "ChartArea1";
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            this.forecastChart.Series.Add(series2);
+            this.forecastChart.Size = new System.Drawing.Size(300, 226);
+            this.forecastChart.TabIndex = 8;
+            this.forecastChart.Text = "chart1";
+            // 
+            // chartFuture
             // 
             chartArea3.Name = "ChartArea1";
-            this.ChartPopulation.ChartAreas.Add(chartArea3);
+            this.chartFuture.ChartAreas.Add(chartArea3);
             legend3.Name = "Legend1";
-            this.ChartPopulation.Legends.Add(legend3);
-            this.ChartPopulation.Location = new System.Drawing.Point(449, 12);
-            this.ChartPopulation.Name = "ChartPopulation";
+            this.chartFuture.Legends.Add(legend3);
+            this.chartFuture.Location = new System.Drawing.Point(801, 50);
+            this.chartFuture.Name = "chartFuture";
             series3.ChartArea = "ChartArea1";
             series3.Legend = "Legend1";
             series3.Name = "Series1";
-            this.ChartPopulation.Series.Add(series3);
-            this.ChartPopulation.Size = new System.Drawing.Size(828, 392);
-            this.ChartPopulation.TabIndex = 0;
-            this.ChartPopulation.Text = "chart1";
+            this.chartFuture.Series.Add(series3);
+            this.chartFuture.Size = new System.Drawing.Size(300, 246);
+            this.chartFuture.TabIndex = 9;
+            this.chartFuture.Text = "chartFuture";
             // 
-            // openFileDialog1
+            // btnForecast
             // 
-            this.openFileDialog1.FileName = "openFileDialog1";
+            this.btnForecast.Location = new System.Drawing.Point(619, 298);
+            this.btnForecast.Name = "btnForecast";
+            this.btnForecast.Size = new System.Drawing.Size(75, 23);
+            this.btnForecast.TabIndex = 11;
+            this.btnForecast.Text = "рассчет";
+            this.btnForecast.UseVisualStyleBackColor = true;
+            this.btnForecast.Click += new System.EventHandler(this.btnForecast_Click);
             // 
-            // IblMaxGrowth
+            // futureTextBox
             // 
-            this.IblMaxGrowth.AutoSize = true;
-            this.IblMaxGrowth.Font = new System.Drawing.Font("Modern No. 20", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.IblMaxGrowth.Location = new System.Drawing.Point(14, 53);
-            this.IblMaxGrowth.Name = "IblMaxGrowth";
-            this.IblMaxGrowth.Size = new System.Drawing.Size(0, 25);
-            this.IblMaxGrowth.TabIndex = 1;
+            this.futureTextBox.Location = new System.Drawing.Point(801, 381);
+            this.futureTextBox.Name = "futureTextBox";
+            this.futureTextBox.Size = new System.Drawing.Size(300, 149);
+            this.futureTextBox.TabIndex = 12;
+            this.futureTextBox.Text = "";
             // 
-            // IblMaxDecline
+            // ntextbox
             // 
-            this.IblMaxDecline.AutoSize = true;
-            this.IblMaxDecline.Font = new System.Drawing.Font("Modern No. 20", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.IblMaxDecline.Location = new System.Drawing.Point(14, 124);
-            this.IblMaxDecline.Name = "IblMaxDecline";
-            this.IblMaxDecline.Size = new System.Drawing.Size(0, 25);
-            this.IblMaxDecline.TabIndex = 2;
-            // 
-            // DataGridView
-            // 
-            this.DataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DataGridView.Location = new System.Drawing.Point(113, 331);
-            this.DataGridView.Name = "DataGridView";
-            this.DataGridView.Size = new System.Drawing.Size(245, 358);
-            this.DataGridView.TabIndex = 3;
-            // 
-            // ButtonOpenFile
-            // 
-            this.ButtonOpenFile.Location = new System.Drawing.Point(39, 219);
-            this.ButtonOpenFile.Name = "ButtonOpenFile";
-            this.ButtonOpenFile.Size = new System.Drawing.Size(173, 67);
-            this.ButtonOpenFile.TabIndex = 4;
-            this.ButtonOpenFile.Text = "Загрузить файл";
-            this.ButtonOpenFile.UseVisualStyleBackColor = true;
-            this.ButtonOpenFile.Click += new System.EventHandler(this.ButtonOpenFile_Click);
+            this.ntextbox.Location = new System.Drawing.Point(801, 312);
+            this.ntextbox.Name = "ntextbox";
+            this.ntextbox.Size = new System.Drawing.Size(100, 20);
+            this.ntextbox.TabIndex = 13;
+
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Modern No. 20", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(3, 13);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(331, 25);
-            this.label1.TabIndex = 5;
-            this.label1.Text = "Максимальный прирост населения";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Modern No. 20", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(3, 87);
+
+            this.label2.Location = new System.Drawing.Point(870, 20);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(306, 25);
-            this.label2.TabIndex = 6;
-            this.label2.Text = "Максимальная убыль населения";
+            this.label2.Size = new System.Drawing.Size(59, 13);
+            this.label2.TabIndex = 15;
+            this.label2.Text = "ПРОГНОЗ";
             // 
-            // ButtonForecast
+            // label3
             // 
-            this.ButtonForecast.Location = new System.Drawing.Point(235, 219);
-            this.ButtonForecast.Name = "ButtonForecast";
-            this.ButtonForecast.Size = new System.Drawing.Size(173, 67);
-            this.ButtonForecast.TabIndex = 7;
-            this.ButtonForecast.Text = "Прогноз на N лет по скользящей средней";
-            this.ButtonForecast.UseVisualStyleBackColor = true;
-            this.ButtonForecast.Click += new System.EventHandler(this.ButtonForecast_Click);
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(126, 338);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(54, 13);
+            this.label3.TabIndex = 16;
+            this.label3.Text = "ДОЛЛАР";
             // 
-            // panel1
+            // label4
             // 
-            this.panel1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.IblMaxDecline);
-            this.panel1.Controls.Add(this.IblMaxGrowth);
-            this.panel1.Location = new System.Drawing.Point(24, 12);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(419, 166);
-            this.panel1.TabIndex = 8;
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(605, 338);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(36, 13);
+            this.label4.TabIndex = 17;
+            this.label4.Text = "ЕВРО";
             // 
-            // PrognozChart
+            // label5
             // 
-            chartArea4.Name = "ChartArea1";
-            this.PrognozChart.ChartAreas.Add(chartArea4);
-            legend4.Name = "Legend1";
-            this.PrognozChart.Legends.Add(legend4);
-            this.PrognozChart.Location = new System.Drawing.Point(449, 410);
-            this.PrognozChart.Name = "PrognozChart";
-            series4.ChartArea = "ChartArea1";
-            series4.Legend = "Legend1";
-            series4.Name = "Series1";
-            this.PrognozChart.Series.Add(series4);
-            this.PrognozChart.Size = new System.Drawing.Size(828, 357);
-            this.PrognozChart.TabIndex = 9;
-            this.PrognozChart.Text = "chart1";
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(870, 358);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(162, 13);
+            this.label5.TabIndex = 18;
+            this.label5.Text = "ИНФОРМАЦИЯ О ПРОГНОЗЕ";
             // 
-            // LarasForm
+            // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.PrognozChart);
-            this.Controls.Add(this.ButtonForecast);
-            this.Controls.Add(this.ButtonOpenFile);
-            this.Controls.Add(this.DataGridView);
-            this.Controls.Add(this.ChartPopulation);
-            this.Controls.Add(this.panel1);
-            this.Name = "LarasForm";
-            this.Text = "Form1";
-            ((System.ComponentModel.ISupportInitialize)(this.ChartPopulation)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DataGridView)).EndInit();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.PrognozChart)).EndInit();
+            this.ClientSize = new System.Drawing.Size(1113, 596);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.ntextbox);
+            this.Controls.Add(this.futureTextBox);
+            this.Controls.Add(this.btnForecast);
+            this.Controls.Add(this.chartFuture);
+            this.Controls.Add(this.forecastChart);
+            this.Controls.Add(this.chart);
+            this.Controls.Add(this.txtMaxLossCurrency2);
+            this.Controls.Add(this.txtMaxLossCurrency1);
+            this.Controls.Add(this.txtMaxGainCurrency2);
+            this.Controls.Add(this.txtMaxGainCurrency1);
+            this.Controls.Add(this.dataGridView);
+            this.Controls.Add(this.btnLoadData);
+            this.Name = "Form1";
+            this.Text = "Анализ курса валют";
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chart)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.forecastChart)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chartFuture)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
+
 
         }
 
@@ -202,6 +288,7 @@ namespace TP_LR_3
         private System.Windows.Forms.Button ButtonForecast;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.DataVisualization.Charting.Chart PrognozChart;
+
     }
 }
 
