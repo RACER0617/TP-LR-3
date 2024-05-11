@@ -1,7 +1,7 @@
 ﻿
 namespace TP_LR_3
 {
-    partial class LarasForm
+    partial class Form1
     {
         /// <summary>
         /// Обязательная переменная конструктора.

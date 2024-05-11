@@ -12,14 +12,20 @@ using LiveCharts.Defaults;
 using LiveCharts.WinForms;
 using LiveCharts.Wpf;
 using Microsoft.Win32;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace TP_LR_3
 {
-    public partial class LarasForm : Form
+    public partial class Form1 : Form
     {
         private List<PopulationData> populationDataList;
 
-        public LarasForm()
+        public Form1()
         {
             InitializeComponent();
         }
